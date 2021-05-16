@@ -11,7 +11,6 @@ passport.use(
           secretOrKey: process.env.JWT_SECRET,
         },
         function (jwtPayload, done) {
-          console.log(jwtPayload)
           return User.findOne({ where: { id: jwtPayload.id } })
               .then((user) => {
                 return done(null, user);
