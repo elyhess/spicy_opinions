@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     }
   }, {
-    freezeTableName: true,
-    timestamps: true,
+    timestamps: true
   });
 
   Article.associate = models => {
