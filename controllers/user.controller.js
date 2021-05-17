@@ -20,7 +20,7 @@ exports.getUser = async (req, res) => {
 exports.getUsers = async (req, res) => {
   const users = await User.findAll({order: ["id"]});
 
-  if (!users) {
+  if (!users.length) {
     return res.status(400).send({message: "No users found."});
   }
 
