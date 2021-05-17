@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(passport.initialize());
 
 app.use("/api/v1/users", routes.user);
+app.use("/api/v1/articles", routes.article);
 
 app.use((req, res) => {
   res.status(404).send("404: Page not found");
