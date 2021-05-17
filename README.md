@@ -18,7 +18,7 @@ To get a local copy up and running follow these steps
    ```
     npm install
    ```
-3. DB creation/migration
+3. DB migration
    ```
     npm run migrate
    ```
@@ -32,3 +32,4 @@ To get a local copy up and running follow these steps
 5. Run server
    ```
    npm run dev
+   ```
