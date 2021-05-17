@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
   }, {
-    freezeTableName: true,
-    timestamps: true,
+    timestamps: true
   });
 
   Comment.associate = models => {
