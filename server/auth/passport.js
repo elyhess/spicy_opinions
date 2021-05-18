@@ -1,4 +1,4 @@
-const passport = require("passport");
+import passport from "passport"
 const passportJwt = require("passport-jwt");
 const ExtractJwt = passportJwt.ExtractJwt;
 const StrategyJwt = passportJwt.Strategy;
