@@ -57,12 +57,12 @@ exports.loginUser = async (req, res) => {
   const user = await User.findOne({where: {email}})
 
   if (!user) {
-    return res.send({message: "Email or password does not match."});
+    return res.status(401).send({message: "Email or password does not match."});
   }
 
   const validPassword = await bcrypt.compare(req.body.password, user.password)
 
-  if (!validPassword) return res.status(401).send("Email or password does not match.")
+  if (!validPassword) return res.status(401).send({message: "Email or password does not match."})
 
   const jwtToken = jwt.sign({
         id: user.id,
