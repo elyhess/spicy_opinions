@@ -1,8 +1,6 @@
 import { Router } from "express";
 const article = require("../controllers/article.controller")
 const router = Router();
-// import passport from "passport";
-// import "../auth/passport";
 
 router.get("/", article.getArticles)
 router.get("/:id", article.getArticle)
