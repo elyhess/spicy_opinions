@@ -5,8 +5,8 @@ function HotTakeList (props) {
   return (
   <Fragment>
     {
-      props.hotTakes.map(hotTake => (
-        <div className="w-full max-w-screen border border-gray-600 rounded-2xl py-3 px-5 mb-5 shadow-lg">
+      props.hotTakes.map((hotTake, i) => (
+        <div key={i} className="w-full max-w-screen border border-gray-600 rounded-2xl py-3 px-5 mb-5 shadow-lg">
           <div className="flex">
             <div>
               <div className="flex flex-wrap space-x-1">

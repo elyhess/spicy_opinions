@@ -7,7 +7,7 @@ function InputHotTake(props) {
   async function onSubmitForm(e) {
     e.preventDefault();
     try {
-      const userId = "18"
+      const userId = "1"
       const body = bodyInput
       const title = titleInput
       const request = {body, title, userId}
@@ -17,6 +17,9 @@ function InputHotTake(props) {
         body: JSON.stringify(request)
       });
       props.getHotTakes();
+      const newSpicy = await response.json();
+      console.log(newSpicy)
+
     } catch (err) {
       console.error(err.message);
     }
