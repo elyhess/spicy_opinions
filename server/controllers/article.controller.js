@@ -14,7 +14,12 @@ exports.getArticle = async (req, res) => {
 }
 
 exports.getArticles = async (req, res) => {
-  const articles = await Article.findAll({order: ["id"]});
+  const articles = await Article.findAll({
+    order: [
+      ['createdAt', 'DESC']
+    ]
+  });
+
   if (!articles.length) {
     return res.status(400).send({message: "No articles found."});
   }
@@ -24,6 +29,11 @@ exports.getArticles = async (req, res) => {
 
 exports.createArticle = async (req, res) => {
   const { userId, title, body } = req.body;
+  console.log(req.body)
+
+  if (!userId || !title || !body) {
+    return res.status(404).send({message: "Must include userId, title and body in request."})
+  }
 
   try {
     let newArticle = await Article.create({userId, title, body});
