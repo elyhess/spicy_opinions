@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import HotTakeList from "./HotTakeList"
 import InputHotTake from "./InputHotTake";
+import { Route } from "react-router-dom";
 
 
 function Content () {
@@ -23,12 +24,25 @@ function Content () {
       <main>
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
-            <InputHotTake
-                getHotTakes={getHotTakes}
-            />
-            <HotTakeList
-                hotTakes={hotTakes}
-            />
+            <Route path="/">
+
+            </Route>
+
+            <Route path="/profile">
+
+            </Route>
+
+            <Route path="/spicies">
+              <InputHotTake
+                  getHotTakes={getHotTakes}
+              />
+              <HotTakeList
+                  hotTakes={hotTakes}
+              />
+            </Route>
+
+
+
           </div>
         </div>
       </main>
