@@ -2,10 +2,17 @@ import React, {useState, useEffect} from "react";
 import HotTakeList from "./HotTakeList"
 import InputHotTake from "./InputHotTake";
 import { Route } from "react-router-dom";
+import Login from "./Login";
+import NavComponent from "./Nav";
 
 
 function Content () {
   const [ hotTakes, setHotTakes ] = useState([]);
+  const [ showLogin, setShowLogin ] = useState(false)
+
+  function openLogin() {
+    setShowLogin(prev => !prev);// toggles back and forth true/false
+  }
 
   async function getHotTakes() {
     const response = await fetch("http://localhost:4000/api/v1/articles")
@@ -22,16 +29,22 @@ function Content () {
 
   return (
       <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
+          {/*Root path*/}
+          <Route path="/">
+            <NavComponent openModal={openLogin}/>
+            <Login showLogin={showLogin} setShowLogin={setShowLogin}/>
+          </Route>
+
+          <div className="main-view">
+            {/*About page  */}
             <Route path="/about">
 
             </Route>
-
+            {/*Profile Page*/}
             <Route path="/profile">
-
+              {/*<button onClick={openModal}>Click Me</button>*/}
             </Route>
-
+            {/*Spicies Page  */}
             <Route path="/spicies">
               <InputHotTake
                   getHotTakes={getHotTakes}
@@ -40,11 +53,7 @@ function Content () {
                   hotTakes={hotTakes}
               />
             </Route>
-
-
-
           </div>
-        </div>
       </main>
   )
 }
