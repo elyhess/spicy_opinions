@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,14 +20,14 @@ function Nav() {
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
-                    <div className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">
-                      <Link to="/profile">Profile</Link>
+                    <div className="inactive-link">
+                      <NavLink to="/profile" activeClassName="active-link">Profile</NavLink>
                     </div>
-                    <div className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                      <Link to="/spicies">Spicies</Link>
+                    <div className="inactive-link">
+                      <NavLink to="/spicies" activeClassName="active-link">Spicies</NavLink>
                     </div>
-                    <div className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                      <Link to="/">About</Link>
+                    <div className="inactive-link">
+                      <NavLink to="/about" activeClassName="active-link">About</NavLink>
                     </div>
                   </div>
                 </div>
@@ -91,14 +91,14 @@ function Nav() {
             {(ref) => (
                 <div className="md:hidden" id="mobile-menu">
                   <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <div className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">
-                      <Link to="/profile">Profile</Link>
+                    <div className="inactive-link block">
+                      <NavLink to="/profile" activeClassName="active-link block">Profile</NavLink>
                     </div>
-                    <div className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                      <Link to="/spicies">Spicies</Link>
+                    <div className="inactive-link block">
+                      <NavLink to="/spicies" activeClassName="active-link block">Spicies</NavLink>
                     </div>
-                    <div className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                      <Link to="/">About</Link>
+                    <div className="inactive-link block">
+                      <NavLink to="/about" activeClassName="active-link block">About</NavLink>
                     </div>
                   </div>
                 </div>
