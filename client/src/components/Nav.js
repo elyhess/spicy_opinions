@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import AuthService from "../services/AuthService"
 
 function Nav(props) {
+  const user = AuthService.getCurrentUser();
   const [isOpen, setIsOpen] = useState(false);
+
+  function logOut() {
+    AuthService.logout()
+    window.location = "/spicies"
+  }
 
   return (
       <div>
@@ -35,15 +42,20 @@ function Nav(props) {
               <div className="-mr-2 flex">
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
-                    <div className="inactive-link">
-                      <NavLink to="/login" activeClassName="active-link" onClick={props.openModal}>Log In</NavLink>
-                    </div>
-                    {/*<div className="inactive-link">*/}
-                    {/*  <NavLink to="/logout" activeClassName="active-link" onClick={props.openModal}>Log Out</NavLink>*/}
-                    {/*</div>*/}
-                    {/*<div className="inactive-link">*/}
-                    {/*  <NavLink to="/register" activeClassName="active-link" onClick={props.openModal}>Register</NavLink>*/}
-                    {/*</div>*/}
+                    {user ? (
+                      <div className="inactive-link">
+                        <NavLink to="/logout" activeClassName="active-link" onClick={logOut}>Log Out</NavLink>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="inactive-link">
+                          <NavLink to="/login" activeClassName="active-link" onClick={props.openModal}>Log In</NavLink>
+                        </div>
+                        <div className="inactive-link">
+                          <NavLink to="/register" activeClassName="active-link" onClick={props.openModal}>Register</NavLink>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
 

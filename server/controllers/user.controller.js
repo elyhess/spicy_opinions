@@ -52,6 +52,7 @@ exports.registerUser = async (req, res) => {
 }
 
 exports.loginUser = async (req, res) => {
+  console.log(req.body)
   const {email} = req.body;
 
   const user = await User.findOne({where: {email}})
@@ -71,5 +72,10 @@ exports.loginUser = async (req, res) => {
       process.env.JWT_SECRET
   );
 
-  res.send({message: "Welcome Back!", token: jwtToken})
+  res.status(200).send({
+    id: user.id,
+    email: user.email,
+    token: jwtToken
+  })
+
 }
