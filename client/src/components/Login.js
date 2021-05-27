@@ -1,9 +1,6 @@
 import React, {Fragment, useState} from "react";
 import {useSpring, animated} from "react-spring";
 import AuthService from "../services/AuthService"
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
 function Login(props) {
   const [email, setEmail] = useState("")
@@ -18,13 +15,15 @@ function Login(props) {
     transform: props.showLogin ? `translateY(0%)` : `translateY(-100%)`
   })
 
-  function onSubmitLogin(e) {
+  async function onSubmitLogin(e) {
     e.preventDefault();
-    console.log()
-    // TODO ADD FLASH MESSAGES HANDLING. PULL ERROR FROM AUTHSERVICE RESPONSE AND RETURN IT
-    AuthService.login(email, password).then(() => {
+    const login = await AuthService.login(email, password)
+    setMessage(login.message);
+    const user = AuthService.getCurrentUser();
+    if (user) {
       window.location = "/profile"
-    })
+    }
+
   }
 
   return (
@@ -33,7 +32,9 @@ function Login(props) {
         <animated.div style={animation}>
           <div className="main-view">
             <div className="bg-gray-500 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-
+              {message ? (
+                <div className="text-xl text-center">{message}</div>
+              ) : null}
               <form onSubmit={onSubmitLogin}>
                 <div className="mb-4">
                   <div className="flex justify-end">
