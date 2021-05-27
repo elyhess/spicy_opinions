@@ -46,12 +46,8 @@ function Content () {
             </Route>
             {/*Spicies Page  */}
             <Route path="/spicies">
-              <InputHotTake
-                  getHotTakes={getHotTakes}
-              />
-              <HotTakeList
-                  hotTakes={hotTakes}
-              />
+              <InputHotTake getHotTakes={getHotTakes}/>
+              <HotTakeList hotTakes={hotTakes}/>
             </Route>
           </div>
       </main>
