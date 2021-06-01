@@ -1,27 +1,13 @@
 import React, {Fragment, useState} from "react";
 import Confetti from 'react-dom-confetti';
+import config from "../config/ConfettiConfig"
 
 function InputHotTake(props) {
   const [titleInput, setTitleInput] = useState("")
   const [bodyInput, setBodyInput] = useState("")
   const [submitted, setSubmitted] = useState(false)
 
-  const config = {
-    angle: "274",
-    spread: "360",
-    startVelocity: 40,
-    elementCount: 70,
-    dragFriction: 0.12,
-    duration: "6900",
-    stagger: 3,
-    width: "10px",
-    height: "10px",
-    perspective: "623px",
-    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
-  };
-
   async function onSubmitForm(e) {
-    setSubmitted(prev => !prev);
     e.preventDefault();
     try {
       const userId = "1"
@@ -34,9 +20,12 @@ function InputHotTake(props) {
         body: JSON.stringify(request)
       });
       props.getHotTakes();
-      const newSpicy = await response.json();
-      console.log(newSpicy)
-      setSubmitted(prev => !prev);
+      if (response.status !== 404 ) {
+        setTitleInput("")
+        setBodyInput("")
+        setSubmitted(prev => !prev);
+        setSubmitted(prev => !prev);
+      }
     } catch (err) {
       console.error(err.message);
     }
