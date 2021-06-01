@@ -27,15 +27,23 @@ function Nav(props) {
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
-                    <div className="inactive-link">
-                      <NavLink to="/profile" activeClassName="active-link">Profile</NavLink>
-                    </div>
-                    <div className="inactive-link">
-                      <NavLink to="/spicies" activeClassName="active-link">Spicies</NavLink>
-                    </div>
-                    <div className="inactive-link">
-                      <NavLink to="/about" activeClassName="active-link">About</NavLink>
-                    </div>
+                    {user ? (
+                    <>
+                      <div className="inactive-link">
+                        <NavLink to="/profile" activeClassName="active-link">Profile</NavLink>
+                      </div>
+                      <div className="inactive-link">
+                        <NavLink to="/spicies" activeClassName="active-link">Spicies</NavLink>
+                      </div>
+                      <div className="inactive-link">
+                        <NavLink to="/about" activeClassName="active-link">About</NavLink>
+                      </div>
+                    </>
+                    ) : (
+                      <div className="inactive-link">
+                        <NavLink to="/about" activeClassName="active-link">About</NavLink>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
