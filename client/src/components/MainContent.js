@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import HotTakeList from "./HotTakeList"
 import InputHotTake from "./InputHotTake";
+import ProfilePage from "./ProfilePage.js";
 import { Route } from "react-router-dom";
 import ProtectedRoute from "../services/ProtectedRoute";
 import Login from "./Login";
@@ -18,12 +19,14 @@ function Content () {
   }
 
   async function getHotTakes() {
-    const response = await fetch("http://localhost:4000/api/v1/articles", {
-      method: "GET",
-      headers: authHeader()
-    })
+    if (user) {
+      const response = await fetch("http://localhost:4000/api/v1/articles", {
+        method: "GET",
+        headers: authHeader()
+      })
     const hotTakesArray = await response.json();
     setHotTakes(hotTakesArray)
+   }
   }
 
   useEffect(() => {
@@ -31,6 +34,9 @@ function Content () {
 
   useEffect(() => {
     getHotTakes();
+    if (window.location.pathname !== "/about" && !user) {
+      openLogin();
+    }
   }, []); // on page load
 
   return (
@@ -41,18 +47,15 @@ function Content () {
           </Route>
 
           <div className="main-view">
-
             <Route exact path="/about">
             </Route>
 
-            <ProtectedRoute exact path="/profile">
-              <HotTakeList hotTakes={hotTakes}/>
-            </ProtectedRoute>
+            <Route exact path="/login">
+            </Route>
 
-            <ProtectedRoute exact path="/spicies" user={user}>
-              <InputHotTake getHotTakes={getHotTakes}/>
-              <HotTakeList hotTakes={hotTakes}/>
-            </ProtectedRoute>
+            <ProtectedRoute exact path="/profile" user={user} component={ProfilePage} />
+            <ProtectedRoute exact path="/spicies" user={user} component={InputHotTake} getHotTakes={getHotTakes} />
+            <ProtectedRoute exact path="/spicies" user={user} component={HotTakeList} hotTakes={hotTakes} />
 
           </div>
       </main>
