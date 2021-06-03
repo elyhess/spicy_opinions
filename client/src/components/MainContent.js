@@ -34,24 +34,21 @@ function Content () {
 
   useEffect(() => {
     getHotTakes();
-    if (window.location.pathname !== "/about" && !user) {
-      openLogin();
-    }
   }, []); // on page load
 
   return (
       <main>
           <Route path="/">
             <NavComponent openModal={openLogin}/>
-            <Login showLogin={showLogin} setShowLogin={setShowLogin}/>
+            <Login showLogin={showLogin} setShowLogin={setShowLogin} openModal={openLogin}/>
           </Route>
 
           <div className="main-view">
             <Route exact path="/about">
             </Route>
 
-            <Route exact path="/login">
-            </Route>
+            <Route exact path="/login" />
+
 
             <ProtectedRoute exact path="/profile" user={user} component={ProfilePage} />
             <ProtectedRoute exact path="/spicies" user={user} component={InputHotTake} getHotTakes={getHotTakes} />

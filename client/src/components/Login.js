@@ -1,11 +1,18 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import {useSpring, animated} from "react-spring";
 import AuthService from "../services/AuthService"
 
 function Login(props) {
+  const user = AuthService.getCurrentUser()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    if (window.location.pathname !== "/about" && window.location.pathname !== "/register" && !user) {
+      props.openModal();
+    }
+  }, []);
 
   const animation = useSpring({
     config: {
