@@ -3,7 +3,7 @@ import InputHotTake from "./InputHotTake";
 import HotTakeList from "./HotTakeList";
 import authHeader from "../services/DataService";
 
-function SpiciesPage(props) {
+function SpiciesPage() {
   const [ hotTakes, setHotTakes ] = useState([]);
 
   async function getHotTakes() {
