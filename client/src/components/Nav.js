@@ -7,11 +7,6 @@ function Nav() {
   const user = AuthService.getCurrentUser();
   const [isOpen, setIsOpen] = useState(false);
 
-  function logOut() {
-    AuthService.logout()
-    window.location = "/spicies"
-  }
-
   return (
       <div>
         <nav className="bg-gray-600">
@@ -52,7 +47,7 @@ function Nav() {
                   <div className="ml-10 flex items-baseline space-x-4">
                     {user ? (
                       <div className="inactive-link">
-                        <NavLink to="/logout" activeClassName="active-link" onClick={logOut}>Log Out</NavLink>
+                        <NavLink to="/logout" activeClassName="active-link">Log Out</NavLink>
                       </div>
                     ) : (
                       <>
