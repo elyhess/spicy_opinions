@@ -3,14 +3,9 @@ import { Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import AuthService from "../services/AuthService"
 
-function Nav(props) {
+function Nav() {
   const user = AuthService.getCurrentUser();
   const [isOpen, setIsOpen] = useState(false);
-
-  function logOut() {
-    AuthService.logout()
-    window.location = "/spicies"
-  }
 
   return (
       <div>
@@ -52,15 +47,15 @@ function Nav(props) {
                   <div className="ml-10 flex items-baseline space-x-4">
                     {user ? (
                       <div className="inactive-link">
-                        <NavLink to="/logout" activeClassName="active-link" onClick={logOut}>Log Out</NavLink>
+                        <NavLink to="/logout" activeClassName="active-link">Log Out</NavLink>
                       </div>
                     ) : (
                       <>
                         <div className="inactive-link">
-                          <NavLink to="/login" activeClassName="active-link" onClick={props.openModal}>Log In</NavLink>
+                          <NavLink to="/login" activeClassName="active-link" >Log In</NavLink>
                         </div>
                         <div className="inactive-link">
-                          <NavLink to="/register" activeClassName="active-link" onClick={props.openModal}>Register</NavLink>
+                          <NavLink to="/register" activeClassName="active-link" >Register</NavLink>
                         </div>
                       </>
                     )}
