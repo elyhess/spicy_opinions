@@ -1,32 +1,36 @@
-import React, {Fragment, useState, useEffect} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {useSpring, animated} from "react-spring";
 import AuthService from "../services/AuthService"
 
 function Login(props) {
-  const user = AuthService.getCurrentUser()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
+  const [ showLogin, setShowLogin ] = useState(false)
+
+  function openLogin() {
+    setShowLogin(prev => !prev); // toggles back and forth true/false
+  }
 
   useEffect(() => {
-    if (window.location.pathname !== "/about" && window.location.pathname !== "/register" && !user) {
-      props.openModal();
-    }
-  }, []);
+    openLogin();
+  }, []); // on page load
+
 
   const animation = useSpring({
     config: {
       duration: 250
     },
-    opacity: props.showLogin ? 1 : 0,
-    transform: props.showLogin ? `translateY(0%)` : `translateY(-100%)`
+    opacity: showLogin ? 1 : 0,
+    transform: showLogin ? `translateY(0%)` : `translateY(-100%)`
   })
 
   async function onSubmitLogin(e) {
     e.preventDefault();
     const login = await AuthService.login(email, password)
     setMessage(login.message);
-    const user = AuthService.getCurrentUser();
+    const user = AuthService.getCurrentUser()
+    console.log(user)
     if (user) {
       window.location = "/profile"
     }
@@ -35,9 +39,9 @@ function Login(props) {
 
   return (
     <Fragment>
-      {props.showLogin ? (
+      {showLogin ? (
         <animated.div style={animation}>
-          <div className="main-view">
+          <div className="main-view pt-8">
             <div className="bg-gray-500 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
               {message ? (
                 <div className="text-xl text-center">{message}</div>
@@ -48,7 +52,7 @@ function Login(props) {
                     <svg xmlns="http://www.w3.org/2000/svg"
                          className="h-6 w-6 hover:text-red-600"
                          fill="none"
-                         onClick={() => props.setShowLogin(prev => !prev)} // closes model on click
+                         onClick={() => window.location.href='/about'} // closes model on click
                          viewBox="0 0 24 24"
                          stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
