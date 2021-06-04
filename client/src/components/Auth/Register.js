@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import {useSpring, animated} from "react-spring";
-import AuthService from "../services/AuthService"
+import AuthService from "../../services/AuthService"
 
 
 function Register() {

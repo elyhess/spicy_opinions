@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import InputHotTake from "./InputHotTake";
-import HotTakeList from "./HotTakeList";
+import InputHotTake from "./HotTakes/InputHotTake";
+import HotTakeList from "./HotTakes/HotTakeList";
 import authHeader from "../services/DataService";
 
 function SpiciesPage() {

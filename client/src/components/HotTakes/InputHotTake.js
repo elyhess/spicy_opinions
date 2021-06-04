@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 import Confetti from 'react-dom-confetti';
-import config from "../config/ConfettiConfig"
+import config from "../../config/ConfettiConfig"
 
 function InputHotTake(props) {
   const [titleInput, setTitleInput] = useState("")

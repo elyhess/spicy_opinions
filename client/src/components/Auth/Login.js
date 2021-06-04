@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {useSpring, animated} from "react-spring";
-import AuthService from "../services/AuthService"
+import AuthService from "../../services/AuthService"
 
 function Login() {
   const [email, setEmail] = useState("")
