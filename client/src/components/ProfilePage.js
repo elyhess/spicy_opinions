@@ -1,8 +1,10 @@
 import React from "react";
 
-function ProfilePage() {
+function ProfilePage(props) {
+  console.log(props.user)
+
   return (
-      <div>Profile Page</div>
+      <div>Hello {props.user.email}</div>
   )
 }
 
