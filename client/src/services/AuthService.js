@@ -16,6 +16,24 @@ class AuthService {
     }
   }
 
+  async register(email, password) {
+    try {
+      const response = await fetch("http://localhost:4000/api/v1/users/register", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({email, password})
+      })
+      const user = await response.json();
+      console.log(user)
+      if (user.email) {
+        localStorage.setItem("user", JSON.stringify(user))
+      }
+      return user
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   logout() {
     localStorage.removeItem("user")
   }
