@@ -18,18 +18,31 @@ function App() {
         <NavComponent />
         <Switch>
           <Route exact path="/" />
+
           <Route exact path="/about" />
+
           <Route exact path="/login" render={()=>(
               user ? (alert("You are already logged in!"), (<Redirect to="/profile"/>)) : (<Login />)
           )} />
+
           <Route exact path="/register" render={()=>(
               user ? (alert("You are already logged in!"), (<Redirect to="/profile"/>)) : (<Register />)
           )} />
+
           <Route exact path="/logout" render={()=>(
               !user ? (alert("You can't sign out if you aren't logged in."), (<Redirect to="/about"/>)) : (<Logout />)
           )} />
-          <ProtectedRoute exact path="/profile" user={user} component={ProfilePage} />
-          <ProtectedRoute exact path="/spicies" user={user} component={SpiciesPage} />
+
+          <ProtectedRoute exact path="/profile"
+                          component={()=> <ProfilePage user={user}/>}
+                          user={user}
+          />
+
+          <ProtectedRoute exact path="/spicies"
+                          component={()=> <SpiciesPage user={user}/>}
+                          user={user}
+          />
+
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </>
