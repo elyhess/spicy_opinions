@@ -8,6 +8,7 @@ import ProfilePage from "./components/ProfilePage";
 import SpiciesPage from "./components/SpiciesPage";
 import NotFoundPage from "./components/NotFound";
 import Logout from "./components/Logout"
+import Register from "./components/Register"
 
 function App() {
   const user = AuthService.getCurrentUser()
@@ -20,6 +21,9 @@ function App() {
           <Route exact path="/about" />
           <Route exact path="/login" render={()=>(
               user ? (alert("You are already logged in!"), (<Redirect to="/profile"/>)) : (<Login />)
+          )} />
+          <Route exact path="/register" render={()=>(
+              user ? (alert("You are already logged in!"), (<Redirect to="/profile"/>)) : (<Register />)
           )} />
           <Route exact path="/logout" render={()=>(
               !user ? (alert("You can't sign out if you aren't logged in."), (<Redirect to="/about"/>)) : (<Logout />)
