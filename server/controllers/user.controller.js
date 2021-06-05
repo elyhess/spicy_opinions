@@ -45,7 +45,17 @@ exports.registerUser = async (req, res) => {
 
   try {
     let newUser = await User.create({email, password});
-    return res.send(newUser)
+    const jwtToken = jwt.sign({
+          id: newUser.id,
+          email: newUser.email
+        },
+        process.env.JWT_SECRET
+    );
+    res.status(201).send({
+      id: newUser.id,
+      email: newUser.email,
+      token: jwtToken
+    })
   } catch (error) {
     return res.status(500).send({message: `Error ${error.message}`})
   }

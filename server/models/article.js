@@ -3,6 +3,9 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING
     },
+    author: {
+      type: DataTypes.STRING
+    },
     userId: {
       type: DataTypes.INTEGER
     },

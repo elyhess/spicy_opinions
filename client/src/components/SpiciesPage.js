@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import InputHotTake from "./InputHotTake";
-import HotTakeList from "./HotTakeList";
+import InputHotTake from "./HotTakes/InputHotTake";
+import HotTakeList from "./HotTakes/HotTakeList";
 import authHeader from "../services/DataService";
 
-function SpiciesPage() {
+function SpiciesPage(props) {
   const [ hotTakes, setHotTakes ] = useState([]);
 
   async function getHotTakes() {
@@ -25,7 +25,7 @@ function SpiciesPage() {
 
   return (
     <>
-      <InputHotTake getHotTakes={getHotTakes} />
+      <InputHotTake getHotTakes={getHotTakes} user={props.user}/>
       <HotTakeList hotTakes={hotTakes} />
     </>
   )

@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 import Confetti from 'react-dom-confetti';
-import config from "../config/ConfettiConfig"
+import config from "../../config/ConfettiConfig"
 
 function InputHotTake(props) {
   const [titleInput, setTitleInput] = useState("")
@@ -10,10 +10,11 @@ function InputHotTake(props) {
   async function onSubmitForm(e) {
     e.preventDefault();
     try {
-      const userId = "1"
+      const userId = props.user.id
+      const author = props.user.email
       const body = bodyInput
       const title = titleInput
-      const request = {body, title, userId}
+      const request = {body, title, userId, author}
       const response = await fetch("http://localhost:4000/api/v1/articles/new", {
         method: "POST",
         headers: {"Content-Type": "application/json"},

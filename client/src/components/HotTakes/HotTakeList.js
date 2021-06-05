@@ -26,7 +26,7 @@ function HotTakeList (props) {
             <p className="text-lg">{hotTake.body}</p>
             <div className="flex justify-between">
               <p className="text-gray-500 pt-1">{moment(hotTake.createdAt).fromNow()}</p>
-              <p className="text-gray-500 pt-1">User #{hotTake.userId}</p>
+              <p className="text-gray-500 pt-1">{hotTake.author}</p>
             </div>
           </div>
 

@@ -1,14 +1,15 @@
 import './App.css';
 import { Route, Redirect, Switch } from "react-router-dom";
 import NavComponent from "./components/Nav";
-import Login from "./components/Login";
+import Login from "./components/Auth/Login";
 import AuthService from "./services/AuthService";
 import ProtectedRoute from "./services/ProtectedRoute";
 import ProfilePage from "./components/ProfilePage";
 import SpiciesPage from "./components/SpiciesPage";
-import NotFoundPage from "./components/NotFound";
-import Logout from "./components/Logout"
-import Register from "./components/Register"
+import NotFoundPage from "./components/Errors/NotFound";
+import Logout from "./components/Auth/Logout"
+import Register from "./components/Auth/Register"
+import AboutPage from "./components/AboutPage";
 
 function App() {
   const user = AuthService.getCurrentUser()
@@ -19,7 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/" />
 
-          <Route exact path="/about" />
+          <Route exact path="/about" component={AboutPage}/>
 
           <Route exact path="/login" render={()=>(
               user ? (alert("You are already logged in!"), (<Redirect to="/profile"/>)) : (<Login />)

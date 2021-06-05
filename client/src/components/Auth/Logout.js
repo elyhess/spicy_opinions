@@ -1,4 +1,4 @@
-import AuthService from "../services/AuthService"
+import AuthService from "../../services/AuthService"
 
 function Logout() {
   AuthService.logout()
