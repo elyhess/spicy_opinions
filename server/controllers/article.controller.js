@@ -28,15 +28,15 @@ exports.getArticles = async (req, res) => {
 }
 
 exports.createArticle = async (req, res) => {
-  const { userId, title, body } = req.body;
+  const { userId, author, title, body } = req.body;
   console.log(req.body)
 
-  if (!userId || !title || !body) {
+  if (!userId || !title || !body || !author) {
     return res.status(404).send({message: "Must include userId, title and body in request."})
   }
 
   try {
-    let newArticle = await Article.create({userId, title, body});
+    let newArticle = await Article.create({userId, title, body, author});
     return res.send(newArticle)
   } catch (error) {
     return res.status(400).send({message: `Error ${error.message}`})
