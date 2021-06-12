@@ -10,6 +10,7 @@ import NotFoundPage from "./components/Errors/NotFound";
 import Logout from "./components/Auth/Logout"
 import Register from "./components/Auth/Register"
 import AboutPage from "./components/AboutPage";
+import HotTake from "./components/HotTakeComments/HotTake"
 
 function App() {
   const user = AuthService.getCurrentUser()
@@ -17,6 +18,7 @@ function App() {
   return (
       <>
         <NavComponent />
+
         <Switch>
           <Route exact path="/" />
 
@@ -34,6 +36,7 @@ function App() {
               !user ? (alert("You can't sign out if you aren't logged in."), (<Redirect to="/about"/>)) : (<Logout />)
           )} />
 
+
           <ProtectedRoute exact path="/profile"
                           component={()=> <ProfilePage user={user}/>}
                           user={user}
@@ -41,6 +44,11 @@ function App() {
 
           <ProtectedRoute exact path="/spicies"
                           component={()=> <SpiciesPage user={user}/>}
+                          user={user}
+          />
+
+          <ProtectedRoute exact path="/spicies/:id"
+                          component={()=> <HotTake user={user}/>}
                           user={user}
           />
 
