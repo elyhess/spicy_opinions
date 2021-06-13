@@ -51,7 +51,7 @@ function HotTakeList (props) {
                   </path>
                 </g>
               </svg>
-              <span>139.7k</span></div>
+              <span>{hotTake.commentCount}</span></div>
           </div>
         </div>
       </div>

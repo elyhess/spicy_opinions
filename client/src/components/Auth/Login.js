@@ -70,6 +70,7 @@ function Login() {
                   <label className="block text-grey-darker text-sm font-bold mb-2" htmlFor="password">Password</label>
                   <input className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3"
                          value={password}
+                         type="password"
                          onChange={e => setPassword(e.target.value)}
                          placeholder="******************"
                   />

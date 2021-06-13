@@ -1,3 +1,4 @@
+const {Sequelize} = require("sequelize");
 const Article = require("../models").Article;
 const Comment = require("../models").Comment;
 
@@ -12,14 +13,25 @@ exports.getArticle = async (req, res) => {
   } catch (error) {
     return res.status(400).send({message: "Must enter a valid id"});
   }
-
 }
 
 exports.getArticles = async (req, res) => {
   const articles = await Article.findAll({
     order: [
       ['createdAt', 'DESC']
-    ]
+    ],
+    include: [
+      {
+        as: 'Comments',
+        model: Comment,
+        attributes: [], // empty array is important here!
+      },
+    ],
+    attributes: [
+      'id', 'title', 'body', 'author', 'userId', 'createdAt', 'updatedAt',
+      [Sequelize.fn("COUNT", Sequelize.col("Comments.id")), "commentCount"]
+    ],
+    group : ['Article.id'], // group only by parent.id here!
   });
 
   if (!articles.length) {
