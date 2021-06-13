@@ -16,8 +16,8 @@ function Nav() {
                 <div className="flex-shrink-0">
                   <img
                       className="h-8 w-8"
-                      src="pepper.png"
-                      alt="Workflow"
+                      src={window.location.origin + '/pepper.png'}
+                      alt="Pepper"
                   />
                 </div>
                 <div className="hidden md:block">

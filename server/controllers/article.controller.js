@@ -3,14 +3,16 @@ const Comment = require("../models").Comment;
 
 exports.getArticle = async (req, res) => {
   const { id } = req.params;
-  const article = await Article.findOne({where: {id}, include: {model: Comment}
-  })
-
-  if (!article) {
-    return res.status(404).send({message: `Article with id ${id} not found.`})
+  try {
+    const article = await Article.findOne({where: {id}, include: {model: Comment}})
+    if (!article) {
+      return res.status(404).send({message: `Article with id ${id} not found.`})
+    }
+    return res.send(article)
+  } catch (error) {
+    return res.status(400).send({message: "Must enter a valid id"});
   }
 
-  return res.send(article)
 }
 
 exports.getArticles = async (req, res) => {
