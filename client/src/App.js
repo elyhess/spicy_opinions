@@ -10,7 +10,7 @@ import NotFoundPage from "./components/Errors/NotFound";
 import Logout from "./components/Auth/Logout"
 import Register from "./components/Auth/Register"
 import AboutPage from "./components/AboutPage";
-import HotTake from "./components/HotTakeComments/HotTake"
+import SpicyPage from "./components/SpicyPage"
 
 function App() {
   const user = AuthService.getCurrentUser()
@@ -48,7 +48,7 @@ function App() {
           />
 
           <ProtectedRoute exact path="/spicies/:id"
-                          component={()=> <HotTake user={user}/>}
+                          component={()=> <SpicyPage user={user}/>}
                           user={user}
           />
 
