@@ -52,7 +52,7 @@ function App() {
                           user={user}
           />
 
-          <Route path="*" component={NotFoundPage} />
+          <Route component={NotFoundPage} />
         </Switch>
       </>
 
