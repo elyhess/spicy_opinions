@@ -1,9 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import moment from "moment";
 
 function HotTakeCommentList(props) {
   return (
-      <Fragment>
+      <>
       {props.hotTake ? (
           <div className="main-view pt-8">
             <div className="w-full max-w-screen border border-gray-600 rounded-2xl py-3 px-5 mb-5 shadow-lg">
@@ -43,7 +43,7 @@ function HotTakeCommentList(props) {
             </div>
           </div>
       ) : null }
-      </Fragment>
+      </>
   );
 }
 
